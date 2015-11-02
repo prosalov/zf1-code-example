@@ -1,0 +1,12 @@
+<?= $this->contentHeader('performance_indicators', array(
+    array(
+        'type'  => 'link',
+        'title' => 'add_performance_indicator',
+        'url'   => $this->url(array(
+            'controller' => 'performance-indicators',
+            'module'     =>'backend',
+            'action'     => 'add'
+        ), null, true),
+    )
+)) ?>
+<?= $this->grid($this->grid) ?>

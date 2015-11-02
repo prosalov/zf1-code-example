@@ -1,0 +1,50 @@
+<? if ($this->pageCount) : ?>
+<?
+    $perPageOptions = array();
+    if (is_array($this->perPageOptions)) {
+        foreach ($this->perPageOptions as $option) {
+            $perPageOptions[$option] = $option;
+        }
+    }
+    if (!in_array($this->itemCountPerPage, $perPageOptions)) {
+        $perPageOptions[$this->itemCountPerPage] = $this->itemCountPerPage;
+    }
+?>
+<table class="grid-pagination">
+<tr>
+    <td class="left">
+        <? if (1 < $this->pageCount) : ?>
+            <? if (isset($this->previous)) : ?>
+                <a href="<?= $this->url(array('page' => $this->previous, 'itemsPerPage' => null)); ?>">&lt; <?= $this->translate('previous') ?></a>&nbsp;
+            <? else : ?>
+                <span class="disabled">&lt; <?= $this->translate('previous') ?></span>&nbsp;
+            <? endif ?>
+            <? foreach ($this->pagesInRange as $page) : ?>
+                <? if ($page != $this->current) : ?>
+                    <a href="<?= $this->url(array('page' => $page, 'itemsPerPage' => null)); ?>"><?= $page ?></a>&nbsp;
+                <? else : ?>
+                    <?= $page; ?>&nbsp;
+                <? endif ?>
+            <? endforeach ?>
+            <? if (isset($this->next)) : ?>
+                &nbsp;<a href="<?= $this->url(array('page' => $this->next, 'itemsPerPage' => null)); ?>"><?= $this->translate('next') ?> &gt;</a>
+            <? else: ?>
+                &nbsp;<span class="disabled"><?= $this->translate('next') ?> &gt;</span>
+            <? endif ?>&nbsp;|&nbsp;
+        <? endif ?>
+        (<?= $this->firstItemNumber ?>-<?= $this->lastItemNumber ?>/<?= $this->totalItemCount ?>)
+    </td>
+    <td class="right">
+        <?= $this->translate('per_page') ?>:
+        <? foreach ($perPageOptions as $key => $perPage) : ?>
+            <? if ($this->itemCountPerPage == $perPage) : ?>
+            <strong><?= $perPage ?></strong>
+            <? else : ?>
+            <a href="<?= $this->url(array('page' => 1, 'per_page' => $perPage)); ?>"><?= $perPage ?></a>
+            <? endif; ?>
+            <? if (end($perPageOptions) != $perPage) : ?> | <? endif; ?>
+        <? endforeach; ?>
+    </td>
+</tr>
+</table>
+<? endif; ?>

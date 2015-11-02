@@ -1,0 +1,22 @@
+<? if ($this->type == 'text') : ?>
+    <input type="text" class="<?= $this->name ?>" id="filter_<?= $this->name ?>" name="filter[<?= $this->name ?>]" value="<?= $this->escape($this->value) ?>"/>
+<? elseif ($this->type == 'range') : ?>
+<div class="range-filter">
+    <div>
+        <label><?= $this->translate('from') ?>:</label> <input type="text" id="filter_<?= $this->name ?>_from" name="filter[<?= $this->name ?>][from]" value="<?= $this->escape($this->value['from']) ?>"/>
+    </div>
+    <div>
+        <label><?= $this->translate('to') ?>:</label> <input type="text" id="filter_<?= $this->name ?>_to" name="filter[<?= $this->name ?>][to]" value="<?= $this->escape($this->value['to']) ?>"/>
+    </div>
+</div>
+<? elseif ($this->type == 'select') : ?>
+<select class="<?= $this->name ?>" id="filter_<?= $this->name ?>" name="filter[<?= $this->name ?>]">
+    <? if (is_array($this->filter_options)) : ?>
+       <? foreach ($this->filter_options as $key => $option) : ?>
+            <?php echo $this->partial('grid/filter-option.phtml', array('value' => $this->value, 'key' => $key, 'option' => $option, )) ?>
+       <? endforeach; ?>
+    <? endif; ?>
+</select>
+<? else : ?>
+&nbsp;
+<? endif; ?>

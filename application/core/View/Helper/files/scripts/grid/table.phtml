@@ -1,0 +1,28 @@
+<div <?= $this->wrapperHtmlAttribs ?>>
+    <? if ($this->filtersEnabled || $this->massActionEnabled) : ?>
+    <form id="grid-action-form" method="post" action="">
+        <? if ($this->massActionEnabled) : ?>
+            <?= $this->massActions ?>
+        <? endif; ?>
+        <? if ($this->filtersEnabled) : ?>
+        <div class="grid-filter-buttons">
+            <input type="submit" class="ui-state-default ui-corner-all" value="<?= $this->translate('set_filter') ?>" name="set_filter" />
+            <input type="submit" class="ui-state-default ui-corner-all" value="<?= $this->translate('reset_filter') ?>" name="reset_filter" />
+        </div>
+        <? endif; ?>
+    <? endif; ?>
+    <table <?= $this->htmlAttribs ?>>
+        <?= $this->rows ?>
+    </table>
+    <? if ($this->paginationEnabled) : ?>
+        <?= $this->paginationControl($this->paginator,
+                'Sliding',
+                'grid/paginator.phtml',
+                array(
+                    'perPageOptions' => $this->perPageOptions
+        )) ?>
+    <? endif ?>
+    <? if ($this->filtersEnabled || $this->massActionsEnabled) : ?>
+    </form>
+    <? endif; ?>
+</div>

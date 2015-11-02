@@ -1,0 +1,13 @@
+Program:
+  columns:
+    id:                       {type: integer(4), primary: true, autoincrement: true}
+    name:                     {type: string(255)}
+    description:              {type: text}
+
+PerformanceIndicator:
+  columns:
+    id:                     {type: integer(4), primary: true, autoincrement: true}
+    name:                   {type: string(255)}
+    program_id:             {type: integer(4)}
+  relations:
+    Program:                {onDelete: cascade, foreignAlias: PerformanceIndicators}

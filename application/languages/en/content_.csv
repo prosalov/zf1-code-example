@@ -1,0 +1,8 @@
+add_performance_indicator; "Add Performance Indicator"
+edit_performance_indicator; "Edit Performance Indicator"
+performance_indicator; "Performance Indicator"
+performance_indicators; "Performance Indicators"
+program; "Program"
+name; "Name"
+save; "Save"
+cancel; "Cancel"

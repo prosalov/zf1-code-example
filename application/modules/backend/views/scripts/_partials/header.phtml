@@ -1,0 +1,10 @@
+<div id="header">
+    <? if ($this->currUser) : ?>
+        <div class="welcome">
+            <?= $this->translate('hello') ?>, <?= $this->currUser->full_name ?>!
+            [<a href="<?= $this->url(array('module' => 'backend', 'controller' => 'login', 'action' => 'logout'), null, true) ?>"><?= $this->translate('logout') ?></a>]
+        </div>
+        <?= $this->locations($this->availableLocations, $this->currentLocation, true, 'backend') ?>
+    <? endif ?>
+    <h1>Backend System</h1>
+</div>

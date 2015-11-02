@@ -1,0 +1,46 @@
+<?
+    $this->headLink()->headLink(array(
+        'rel'   => 'favicon',
+		'href'  => '/favicon.ico',
+		'type'  => 'image/x-icon'
+    ));
+
+    $this->headLink()->appendStylesheet('/css/admin/styles.css');
+
+    $this->headScript()->appendFile('/js/admin/common.js');
+
+    $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=' . $this->getEncoding());
+
+    $this->headMeta()->appendHttpEquiv('Content-Language', 'en');
+
+    $sfMenu = $this->sfMenu();
+
+    $this->confirmation();
+?>
+<?= $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<head>
+    <?= $this->headMeta() ?>
+    <?= $this->headTitle('Backend area')->setSeparator(' - ') ?>
+    <?= $this->headScript() ?>
+    <?= $this->headLink() ?>
+    <?= $this->headStyle() ?>
+</head>
+    <body>
+        <div id="wrapper">
+            <?= $this->partial('_partials/header.phtml', $this->getVars()) ?>
+            <? if ($this->isLoggedIn) : ?>
+            <div id="header-menu">
+                <?= $sfMenu ?>
+            </div>
+            <? endif ?>
+            <div id="content">
+                <?= $this->messenger() ?>
+                <?= $this->layout()->content ?>
+            </div>
+            <?= $this->partial('_partials/footer.phtml', $this->getVars()) ?>
+            <?= $this->ajaxLoader ?>
+        </div>
+        <?= $this->jQuery() ?>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<? 
+$this->JQuery()->addOnload('
+    $("#grid-massaction-select-all").click(function(event) {
+        $(".grid-massaction-checkbox").attr("checked", true)
+        event.preventDefault();
+    });
+
+    $("#grid-massaction-unselect-all").click(function(event) {
+        $(".grid-massaction-checkbox").attr("checked", false)
+        event.preventDefault();
+    });');
+?>
+<table class="grid-massaction">
+    <tr>
+        <td class="left grid-massaction-select">
+            <?= $this->translate('select') ?>:
+            <a href="#" id="grid-massaction-select-all"><?= $this->translate('all')?></a>,
+            <a href="#" id="grid-massaction-unselect-all"><?= $this->translate('none')?></a>
+        </td>
+        <td class="right">
+            <div class="grid-massaction-form">
+                <label for="grid-massaction-select"><?= $this->translate('operations') ?>:</label>
+                <select id="grid-massaction-select" name="mass_action">
+                    <option value="" selected="selected"><?= $this->translate('please_select') ?></option>
+                    <? foreach ($this->massActions as $action => $name) : ?>
+                    <option value="<?= $action ?>"><?= $this->translate($name) ?></option>
+                    <? endforeach; ?>
+                </select>
+                <input class="ui-state-default ui-corner-all" type="submit" value="<?= $this->translate('execute')?>" name="submit" />
+            </div>
+        </td>
+    </tr>
+</table>

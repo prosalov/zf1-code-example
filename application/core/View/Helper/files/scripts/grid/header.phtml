@@ -1,0 +1,9 @@
+<? if ($this->sortable) : ?>
+<th <?= (isset($this->htmlAttribs) && $this->htmlAttribs) ? $this->htmlAttribs : ('class="th_' . $this->header . '"') ?>>
+    <a href="<?= $this->url(array('sort' => $this->sort, 'dir' => $this->dir))?>"><?= $this->value ?></a>
+    <? if ('asc' == $this->arrow) : ?>&#8593;<? endif; ?>
+    <? if ('desc' == $this->arrow) : ?>&#8595;<? endif; ?>
+</th>
+<? else : ?>
+<th <?= (isset($this->htmlAttribs) && $this->htmlAttribs) ? $this->htmlAttribs : ('class="th_' . $this->header . '"') ?>><?= $this->value ?></th>
+<? endif; ?>

@@ -1,0 +1,10 @@
+<?php if (is_array($this->option)) : ?>
+    <optgroup label="<?php echo $this->key ?>">
+        <?php foreach ($this->option as $key => $option) : ?>
+            <?php echo $this->partial('grid/filter-option.phtml', array('value' => $this->value, 'key' => $key, 'option' => $option)) ?>
+        <?php endforeach; ?>
+    </optgroup>
+    <?php else : ?>
+        <? $selected = ((string)$this->value === (string) $this->key) ? 'selected="selected"' : ''; ?>
+        <option value="<?= $this->escape($this->key) ?>" <?= $selected ?>><?= $this->escape($this->translate($this->option)) ?></option>
+<?php endif; ?>

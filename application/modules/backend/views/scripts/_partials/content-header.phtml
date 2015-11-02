@@ -1,0 +1,23 @@
+<div class="content-header">
+    <h2><?= $this->translate($this->title) ?></h2>
+    <? if ($this->buttons) : ?>
+    <div class="clear"></div>
+    <div class="buttons">
+        <? foreach ($this->buttons as $key => $button) : ?>
+            <? 
+                $id     = empty($button['id']) ? '' : 'id="' . $button['id'] . '"';
+                $class  = empty($button['class']) ? 'ui-state-default ui-corner-all' : $button['class'];
+                $target = empty($button['target']) ? '' : 'target="' . $button['target'] . '"';
+            ?>
+            <? if ($button['type'] == 'submit') : ?>
+                <input class="<?= $class ?>" <?= $id ?> type="button" value="<?= $this->translate($button['title']) ?>" onclick="submitForm('<?= $this->formId ?>', '<?= $button['value'] ?>')" />
+            <? elseif ($button['type'] == 'button') : ?>
+                <input class="<?= $class ?>" <?= $id ?> type="button" value="<?= $this->translate($button['title']) ?>" />
+            <? elseif ($button['type'] == 'link') : ?>
+                <a class="<?= $class ?>" <?= $id ?> <?= $target ?> href="<?= $button['url'] ?>"><?= $this->translate($button['title']) ?></a>
+            <? endif ?>
+        <? endforeach ?>
+    </div>
+    <? endif ?>
+    <div class="clear"></div>
+</div>
